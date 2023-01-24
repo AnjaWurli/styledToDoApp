@@ -1,0 +1,144 @@
+/*General Styling*/
+html {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: 1.25rem;
+
+  --background: #f5f5f5;
+  --color: #ffffff;
+  --pink: #ef476f;
+  --yellow: #f5ab00;
+  --blue: #118ab2;
+  --green: #06d6a0;
+  --darkblue: #073b4c;
+}
+body {
+  margin: 0;
+  background-color: var(--background);
+}
+
+header {
+  background-color: var(--pink);
+  padding: 1.65rem;
+}
+
+main {
+  display: grid;
+  justify-content: center;
+}
+h1 {
+  text-align: center;
+  color: var(--color);
+  text-shadow: 2px 2px var(--blue);
+  filter: drop-shadow(2px 2px var(--yellow));
+}
+
+/*Input + Buttons*/
+#user-input,
+button {
+  margin-top: 2rem;
+  font-size: 1rem;
+  border: none;
+  padding: 0.6rem;
+  border-radius: 7px;
+}
+button {
+  background-color: var(--blue);
+  color: var(--color);
+  box-shadow: 3px 3px var(--pink);
+  margin-left: 0.7rem;
+}
+button:active {
+  outline: 2px solid var(--yellow);
+  box-shadow: none;
+}
+button:focus,
+#user-input:focus,
+.filter:focus {
+  outline: 2px solid var(--yellow);
+}
+#user-input {
+  width: 12.5rem;
+}
+#remove {
+  padding: 0.4rem;
+  margin: 0;
+}
+/*Sections*/
+section {
+  margin-top: 1.7rem;
+}
+#heading-filter {
+  margin-bottom: -0.5rem;
+}
+
+/*Filter Options*/
+.filter {
+  all: unset;
+  display: inline-block;
+  background-color: white;
+  outline: 2px solid var(--darkblue);
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  translate: 0 60%;
+  margin-bottom: 0.5rem;
+}
+.filter:checked {
+  background-color: var(--blue);
+}
+li {
+  all: unset;
+  display: block;
+  margin-left: -2rem;
+}
+
+/* ToDos*/
+.yours {
+  background-color: white;
+  padding: 0.5rem;
+  width: 16rem;
+  border-radius: 7px;
+  margin-block: 0.5rem;
+}
+.yours:focus-within {
+  box-shadow: 5px 5px var(--pink);
+  outline: 0.1rem solid var(--yellow);
+}
+.todo {
+  all: unset;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  border: 2px solid var(--darkblue);
+  border-radius: 3px;
+  margin-inline: 0.5rem;
+  translate: 0 10%;
+  position: relative;
+}
+
+.todo:after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  rotate: 45deg;
+  position: relative;
+  top: -40%;
+  left: 50%;
+  translate: -50% 50%;
+}
+.todo:checked {
+  background-color: var(--green);
+}
+.todo:checked + label {
+  text-decoration: line-through;
+}
+label {
+  display: inline-block;
+  width: 80%;
+  padding-left: 0.25rem;
+}
