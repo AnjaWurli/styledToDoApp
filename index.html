@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled ToDo App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Todo App</h1>
+    </header>
+    <main>
+        <div></div>
+        <form>
+            <input type="text" id="user-input" placeholder="Get sh*t done!">
+            <button>Add</button>
+        </form>
+        <section>
+            <h2 id="heading-filter">Filter & Options</h2>
+            <ul id="filter-list">
+                <li>
+                    <input type="radio" class="filter" id="all" name="filter" checked>
+                    <label for="all">
+                        All
+                    </label>
+                </li>
+                <li>
+                    <input type="radio" class="filter" id="open" name="filter">
+                    <label for="open">
+                        Open
+                    </label>
+                </li>
+                <li>
+                    <input type="radio" class="filter" id="done" name="filter">
+                    <label for="done">
+                        Done
+                    </label>
+
+                </li>
+            </ul>
+            <button id="remove">Remove Done Todos</button>
+        </section>
+        <section>
+            <h2>Your Todos</h2>
+            <ul id="todo-list">
+                <li class="yours bsp1"><input type="checkbox" id="bsp1" class="todo">
+                    <label for="bsp">Bsp</label>
+                </li>
+                <li class="yours bsp2"><input type="checkbox" id="bsp2" class="todo">
+                    <label for="bsp">Bsp</label>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
