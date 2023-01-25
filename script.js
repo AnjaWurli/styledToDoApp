@@ -18,10 +18,15 @@ function addTodo(event) {
     inputEl.setAttribute("id", y);
     labelEl.setAttribute("for", y);
 
-    liEl.appendChild(inputEl);
-    liEl.appendChild(labelEl);
+    liEl.append(inputEl, labelEl);
     labelEl.appendChild(document.createTextNode(x));
     document.querySelector("#todo-list").appendChild(liEl);
+
+    document.querySelector("#user-input").removeAttribute("style");
+  } else {
+    document
+      .querySelector("#user-input")
+      .setAttribute("style", "outline: 2px solid red; color: red");
   }
 }
 
@@ -51,7 +56,7 @@ document.querySelector("#remove").addEventListener("click", () => {
   });
 });
 
-function fn(event) {
+function filter(event) {
   console.log(event.target.id);
   const allDone = document.querySelectorAll(".done");
   const all = document.querySelectorAll(".yours");
@@ -72,4 +77,4 @@ function fn(event) {
   }
 }
 
-document.querySelector("#filter-list").addEventListener("change", fn);
+document.querySelector("#filter-list").addEventListener("change", filter);
