@@ -2,9 +2,15 @@ function addTodo(event) {
   event.preventDefault();
   let x = document.querySelector("#user-input").value;
 
+  let classX = "";
+  for (i = 0; i < x.length; i++) {
+    if (x[i] !== " ") {
+      classX += x[i];
+    }
+  }
   //for multiple entries that are the same:
-  let i = document.querySelectorAll(`.${x}`).length;
-  let y = x + i;
+  let j = document.querySelectorAll(`.${classX}`).length;
+  let y = classX + j;
   console.log(y);
 
   if (x.length >= 5) {
@@ -12,7 +18,7 @@ function addTodo(event) {
     let inputEl = document.createElement("input");
     let labelEl = document.createElement("label");
 
-    liEl.setAttribute("class", `${x} ${y} yours`);
+    liEl.setAttribute("class", `${classX} ${y} yours`);
     inputEl.setAttribute("type", "checkbox");
     inputEl.setAttribute("class", "todo");
     inputEl.setAttribute("id", y);
