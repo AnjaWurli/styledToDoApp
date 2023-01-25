@@ -1,32 +1,46 @@
-function addTodo(event) {
-  event.preventDefault();
-  let x = document.querySelector("#user-input").value;
+const state = {
+  todos: [
+    { description: "Learn HTML", done: true, id: "1" },
+    { description: "Learn CSS", done: false, id: "2" },
+    { description: "Learn Javascript", done: false, id: "3" },
+  ],
+};
+render();
 
-  let classX = "";
-  for (i = 0; i < x.length; i++) {
-    if (x[i] !== " ") {
-      classX += x[i];
-    }
-  }
-  //for multiple entries that are the same:
-  let j = document.querySelectorAll(`.${classX}`).length;
-  let y = classX + j;
-  console.log(y);
-
-  if (x.length >= 5) {
+function render() {
+  document.querySelector("#todo-list").innerHTML = "";
+  state.todos.forEach((todo) => {
     let liEl = document.createElement("li");
     let inputEl = document.createElement("input");
     let labelEl = document.createElement("label");
 
-    liEl.setAttribute("class", `${classX} ${y} yours`);
+    liEl.setAttribute("class", `${todo.id} yours`);
     inputEl.setAttribute("type", "checkbox");
     inputEl.setAttribute("class", "todo");
-    inputEl.setAttribute("id", y);
-    labelEl.setAttribute("for", y);
+    inputEl.setAttribute("id", todo.id);
+    labelEl.setAttribute("for", todo.id);
 
     liEl.append(inputEl, labelEl);
-    labelEl.appendChild(document.createTextNode(x));
+    labelEl.appendChild(document.createTextNode(todo.description));
     document.querySelector("#todo-list").appendChild(liEl);
+
+    if (todo.done === true) {
+      inputEl.setAttribute("checked", "true");
+    }
+  });
+}
+
+function addTodo(event) {
+  event.preventDefault();
+  let x = document.querySelector("#user-input").value;
+
+  let y = +state.todos[state.todos.length - 1].id + 1;
+
+  if (x.length >= 5) {
+    //state={todos:[{},{},...]}
+    state.todos.push({ description: `${x}`, done: `false`, id: `${y}` });
+
+    render();
 
     document.querySelector("#user-input").removeAttribute("style");
   } else {
@@ -47,40 +61,35 @@ document.querySelector("input").addEventListener("keydown", (event) => {
 
 //mark as done:
 document.querySelector("#todo-list").addEventListener("change", (event) => {
-  //the id of the checkbox is also the class of the list element we want to mark as "done":
-  const liClass = event.target.id;
-  document.querySelector(`.${liClass}`).classList.toggle("done");
-  console.log(event.target.id);
+  state.todos.forEach((todo) => {
+    if (todo.id === event.target.id) {
+      todo.done = event.target.checked;
+    }
+  });
 });
 
 //remove done:
 document.querySelector("#remove").addEventListener("click", () => {
-  const allDone = document.querySelectorAll(".done");
-  allDone.forEach((done) => {
-    console.log(done);
-    done.remove();
-  });
+  for (let i = 0; i < state.todos.length; i++) {
+    if (state.todos[i].done === true) {
+      state.todos.splice(i, 1);
+    }
+  }
+  render();
 });
 
 function filter(event) {
-  console.log(event.target.id);
-  const allDone = document.querySelectorAll(".done");
-  const all = document.querySelectorAll(".yours");
+  const allTodo = document.querySelectorAll(".todo");
 
-  all.forEach((alls) => {
-    alls.style.removeProperty("display");
+  allTodo.forEach((all) => {
+    if (event.target.id === "open" && all.checked) {
+      all.parentElement.style.setProperty("display", "none");
+    } else if (event.target.id === "done" && !all.checked) {
+      all.parentElement.style.setProperty("display", "none");
+    } else {
+      all.parentElement.style.removeProperty("display");
+    }
   });
-  if (event.target.id === "open") {
-    allDone.forEach((done) => {
-      done.style.setProperty("display", "none");
-    });
-  } else if (event.target.id === "done") {
-    all.forEach((alls) => {
-      if (!alls.getAttribute("class").includes("done")) {
-        alls.style.setProperty("display", "none");
-      }
-    });
-  }
 }
 
 document.querySelector("#filter-list").addEventListener("change", filter);
