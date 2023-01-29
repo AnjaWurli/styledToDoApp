@@ -23,3 +23,10 @@ Implement a basic Todo App with state management.
 ## Source
 
 https://github.com/coding-bootcamps-eu/web-apps-foundation/blob/main/state-management/01-todo-app-with-state-management.md
+
+## Time I needed for all steps:
+
+- [ ] Styling: 2,5 hours
+- [ ] Javascript without State: 2,5 hours
+- [ ] State Management: 2 hours
+- [ ] Local Storage + no duplicated entries: 1 hour
