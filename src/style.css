@@ -60,6 +60,11 @@ button:focus,
 #user-input {
   width: 12.5rem;
 }
+span {
+  color: red;
+  font-style: italic;
+  padding-left: 1rem;
+}
 #remove {
   padding: 0.4rem;
   margin: 0;

@@ -16,26 +16,26 @@
     </header>
     <main>
         <form>
-            <input type="text" id="user-input" placeholder="Get sh*t done!">
-            <button>Add</button>
-        </form>
+            <input type="text" id="user-input" placeholder="Get sh*t done!" data-cy="input-shit">
+            <button data-cy="add-button">Add</button>
 
+        </form>
         <section>
             <h2 id="heading-filter">Filter & Options</h2>
             <ul id="filter-list">
-                <li>
+                <li data-cy="all">
                     <input type="radio" class="filter" id="all" name="filter" checked>
                     <label for="all">
                         All
                     </label>
                 </li>
-                <li>
+                <li data-cy="open">
                     <input type="radio" class="filter" id="open" name="filter">
                     <label for="open">
                         Open
                     </label>
                 </li>
-                <li>
+                <li data-cy="done">
                     <input type="radio" class="filter" id="done" name="filter">
                     <label for="done">
                         Done
@@ -43,7 +43,7 @@
 
                 </li>
             </ul>
-            <button id="remove">Remove Done Todos</button>
+            <button id="remove" data-cy="remove-button">Remove Done Todos</button>
         </section>
         <section>
             <h2>Your Todos</h2>

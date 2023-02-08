@@ -1,5 +1,8 @@
 let todos = [];
 
+//remove button only visible when at least todo marked as done?
+//document.querySelector("#remove").style.setProperty("visibility", "hidden");
+
 fetch("http://localhost:4730/todos")
   .then((response) => response.json())
   .then((data) => {
@@ -15,8 +18,10 @@ function render(todo) {
   let labelEl = document.createElement("label");
 
   liEl.setAttribute("class", `${todo.id} yours`);
+  liEl.setAttribute("data-cy", `${todo.description}`);
   inputEl.setAttribute("type", "checkbox");
   inputEl.setAttribute("class", "todo");
+  inputEl.setAttribute("data-cy", "checkbox");
   inputEl.setAttribute("id", todo.id);
   labelEl.setAttribute("for", todo.id);
 
@@ -33,12 +38,15 @@ function render(todo) {
 function addTodo(event) {
   event.preventDefault();
   let x = document.querySelector("#user-input").value;
+  if (document.querySelector("span")) {
+    document.querySelector("span").remove();
+  }
 
   try {
     todos.forEach((todo) => {
       //for doublicated entries:
       if (x.toLowerCase() === todo.description.toLowerCase()) {
-        throw new Error("double");
+        throw "double";
       }
     });
 
@@ -60,15 +68,26 @@ function addTodo(event) {
       event.target.reset(); //empty the input element
     } else {
       //for entries shorter than 5 characters
-      throw new Error("short");
+      throw "short";
     }
   } catch (e) {
-    if (e.message === "double") {
-      alert("This To-Do is already there.");
+    const alert = document.createElement("span");
+    let alertTxt;
+    if (e === "double") {
+      //alert("This To-Do is already there.");
+      alertTxt = document.createTextNode("This To-Do is already there");
     }
-    if (e.message === "short") {
-      alert("Your input is too short. Use at least 5 characters.");
+    if (e === "short") {
+      //alert("Your input is too short. Use at least 5 characters.");
+      alertTxt = document.createTextNode(
+        "Your input is too short. Use at least 5 characters"
+      );
     }
+    alert.append(alertTxt);
+    document
+      .querySelector("main")
+      .insertBefore(alert, document.querySelector("section"));
+
     document
       .querySelector("#user-input")
       .setAttribute("style", "outline: 2px solid red; color: red");
