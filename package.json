@@ -1,0 +1,19 @@
+{
+  "name": "styledtodo",
+  "version": "1.0.0",
+  "description": "Create a todo app with HTML, CSS and JavaScript like [this](https://styled-todo-app.netlify.app/).",
+  "main": "index.js",
+  "scripts": {
+    "serve": "serve ./src",
+    "e2e": "cypress open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  },
+  "dependencies": {
+    "cypress": "^12.5.1"
+  }
+}
