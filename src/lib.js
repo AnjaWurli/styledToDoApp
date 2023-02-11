@@ -1,4 +1,4 @@
-//import { render } from "./render.js";
+import { checkDuplicate } from "./check-double-entries.js";
 export let todos = [];
 export function initApp() {
   //remove button only visible when at least todo marked as done?
@@ -46,7 +46,7 @@ export function addTodo(event) {
   try {
     todos.forEach((todo) => {
       //for doublicated entries:
-      if (x.toLowerCase() === todo.description.toLowerCase()) {
+      if (checkDuplicate(x, todo.description)) {
         throw "double";
       }
     });
