@@ -27,5 +27,5 @@ jobs:
       - run: npm run devserver &
       # Run the command for the e2e tests
       - run: npm run e2e:ci
-      # Run the command for the unit tests
+      # Run the command for the unit tests with jest
       - run: npm run test:ci
